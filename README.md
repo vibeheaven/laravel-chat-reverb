@@ -1,55 +1,150 @@
-# Laravel Real-Time Chat with Reverb and Vue 3
+# Laravel Real-Time Chat with Reverb and Vue 3 🚀
 
-This project provides a foundation for building a real-time chat application using Laravel, Laravel Reverb (a Pusher alternative), and Vue 3. It enables users to connect, send messages, and receive updates in real-time, fostering a dynamic and engaging chat experience.
+WhatsApp benzeri kapsamlı bir gerçek zamanlı sohbet uygulaması. Laravel Reverb, Vue 3 ve Tailwind CSS ile geliştirilmiştir.
 
+## ✨ Özellikler
 
-## Video Tutorial
-[![Real-time Chat system](https://i3.ytimg.com/vi/8ykxcM0-3Yg/hqdefault.jpg)](https://www.youtube.com/watch?v=8ykxcM0-3Yg)
+### 💬 Mesajlaşma
+- ✅ Gerçek zamanlı mesajlaşma (Laravel Reverb)
+- ✅ Özel (1:1) sohbetler
+- ✅ Grup sohbetleri
+- ✅ "Yazıyor..." göstergesi
+- ✅ Mesaj zaman damgaları
 
-**Try [Spec Coder: VSCode Extension](https://qirolab.com/spec-coder) - Code Faster & Smarter with AI!**
+### 📊 Mesaj Durumları (WhatsApp Benzeri)
+- ✅ ⟳ **Bekliyor** - Tek tık (sistem kapalı)
+- ✅ ✓✓ **İletildi** - Çift gri tık (sistem açık, okunmadı)
+- ✅ ✓✓ **Görüldü** - Çift mavi tık (mesaj okundu)
+- ✅ Grup mesajlarında toplu durum kontrolü
 
+### 👥 Grup Yönetimi
+- ✅ Grup oluşturma
+- ✅ Grup resmi yükleme ve düzenleme
+- ✅ Grup açıklaması ekleme
+- ✅ Üye ekleme/çıkarma
+- ✅ İki seviyeli yetki sistemi (Yönetici/Üye)
+- ✅ Grup bilgilerini görüntüleme
 
+### 🎨 Kullanıcı Arayüzü
+- ✅ WhatsApp benzeri modern tasarım
+- ✅ Responsive (mobil uyumlu)
+- ✅ Otomatik avatar oluşturma (ui-avatars.com)
+- ✅ Okunmamış mesaj sayacı
+- ✅ Son mesaj ve zaman gösterimi
+- ✅ Arama fonksiyonu
 
-## Installation:
+### 🔔 Bildirimler ve Modal'lar
+- ✅ Grup/Kişi bilgi modal'ı
+- ✅ Grup oluşturma modal'ı
+- ✅ Üye yönetimi modal'ı
 
-1. Clone the repository:
+## 🚀 Hızlı Başlangıç
+
+### Otomatik Kurulum
+```bash
+./setup-chat.sh
 ```
-git clone git@github.com:qirolab/laravel-reverb-chat.git
-```
 
-2. Navigate to the project directory:
-```
-cd laravel-reverb-chat
-```
+### Manuel Kurulum
 
-3. Install dependencies:
-```
+1. **Bağımlılıkları yükleyin:**
+```bash
 composer install
-npm install # or yarn install
+npm install
 ```
 
-4. Generate application key:
-```
+2. **Environment dosyasını hazırlayın:**
+```bash
+cp .env.example .env
 php artisan key:generate
 ```
 
-5. Configure database connection:
+3. **Veritabanını yapılandırın:**
 
-Edit `.env` file according to your database credentials.
+`.env` dosyasında veritabanı ayarlarınızı düzenleyin.
 
-6. Migrate database tables
-```
+4. **Migration'ları çalıştırın:**
+```bash
 php artisan migrate
 ```
 
-7. Start development server
+5. **Storage link oluşturun:**
+```bash
+php artisan storage:link
 ```
-php artisan serve
+
+6. **Frontend'i build edin:**
+```bash
+npm run build
+# veya geliştirme modu için:
 npm run dev:tailwind
 ```
 
-Here we used `npm run dev:tailwind` instead of `npm run dev` because we created
-a `tailwind` theme using the Laravel Themer package in this project.
+7. **Reverb sunucusunu başlatın:**
+```bash
+php artisan reverb:start
+```
+
+8. **Laravel sunucusunu başlatın (yeni terminal):**
+```bash
+php artisan serve
+```
+
+9. Tarayıcınızda `http://localhost:8000` adresine gidin ve kayıt olun!
+
+## 📖 Detaylı Kullanım Kılavuzu
+
+Detaylı kurulum ve kullanım talimatları için [KURULUM.md](KURULUM.md) dosyasına bakın.
+
+## 🗄️ Veritabanı Yapısı
+
+### Yeni Tablolar
+- **conversations** - Sohbet bilgileri (grup/özel)
+- **conversation_members** - Sohbet üyeleri ve rolleri
+- **messages** - Mesajlar
+- **message_statuses** - Mesaj durumları (pending/delivered/read)
+
+## 🛠️ Teknolojiler
+
+- **Backend:** Laravel 11
+- **Frontend:** Vue.js 3
+- **Styling:** Tailwind CSS
+- **Real-time:** Laravel Reverb (WebSockets)
+- **Broadcasting:** Pusher Protocol
+- **Avatar:** ui-avatars.com API
+
+## 📱 Ekran Görüntüleri
+
+### Dashboard
+WhatsApp benzeri sohbet listesi, okunmamış mesaj sayaçları, son mesajlar
+
+### Mesajlaşma
+Gerçek zamanlı mesajlaşma, mesaj durumları (görüldü/iletildi), "yazıyor..." göstergesi
+
+### Grup Yönetimi
+Grup oluşturma, resim yükleme, üye yönetimi, yetki sistemi
+
+## 🎯 Kullanım Senaryoları
+
+1. **Özel Mesajlaşma:** İki kullanıcı arasında 1:1 sohbet
+2. **Grup Sohbetleri:** Birden fazla kullanıcıyla grup sohbeti
+3. **Mesaj Takibi:** Mesajların ne zaman iletildiği ve okunduğunu görme
+4. **Grup Yönetimi:** Yöneticiler grubu düzenleyebilir, üye ekleyip çıkarabilir
+
+## 🔐 Güvenlik
+
+- Tüm sohbetler authentication gerektirir
+- Broadcasting kanalları authorization kullanır
+- Grup yönetimi yetki kontrolü ile korunur
+- CSRF koruması aktif
+
+## 📝 API Endpoints
+
+Tüm API endpoint'lerinin detaylı listesi için [KURULUM.md](KURULUM.md) dosyasına bakın.
+
+## 🐛 Sorun Giderme
+
+Yaygın sorunlar ve çözümleri için [KURULUM.md](KURULUM.md) dosyasının "Sorun Giderme" bölümüne bakın.
 
 
 ## Want to Support My Work?
@@ -78,3 +173,4 @@ If you found this demo helpful and want to support my work, check out some of my
 
 [![DigitalOcean Referral
 Badge](https://web-platforms.sfo2.cdn.digitaloceanspaces.com/WWW/Badge%201.svg)](https://www.digitalocean.com/?refcode=e740238537d0&utm_campaign=Referral_Invite&utm_medium=Referral_Program&utm_source=badge)
+

@@ -59,6 +59,16 @@ return [
             ]) : [],
         ],
 
+        'sc_mysql' => [
+            'driver' => 'mysql',
+            'url' => env('DB_URL'),
+            'host' => env('DB_HOST', '127.0.0.1'),
+            'port' => env('DB_PORT', '3306'),
+            'database' => env('SC_DB_DATABASE', 'laravel'),
+            'username' => env('SC_DB_USERNAME', 'root'),
+            'password' => env('SC_DB_PASSWORD', ''),
+        ],
+
         'mariadb' => [
             'driver' => 'mariadb',
             'url' => env('DB_URL'),

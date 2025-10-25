@@ -27,8 +27,21 @@ const app = createApp({});
 //     app.component(key.split("/").pop().split(".")[0], files[key].default);
 // }
 
+// Yeni bileşenler
+import ChatDashboard from "./components/ChatDashboard.vue";
+import ChatWindow from "./components/ChatWindow.vue";
+import CreateGroupModal from "./components/CreateGroupModal.vue";
+import ConversationInfoModal from "./components/ConversationInfoModal.vue";
+import MentionCommandInput from "./components/MentionCommandInput.vue";
+
+// Eski bileşen (backward compatibility için)
 import ChatComponent from "./components/ChatComponent.vue";
 
+app.component("chat-dashboard", ChatDashboard);
+app.component("chat-window", ChatWindow);
+app.component("create-group-modal", CreateGroupModal);
+app.component("conversation-info-modal", ConversationInfoModal);
+app.component("mention-command-input", MentionCommandInput);
 app.component("chat-component", ChatComponent);
 
 /**

@@ -1,34 +1,30 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="text-xl font-semibold leading-tight text-gray-800">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
-    <div class="py-12">
-        <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
-            <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                        @foreach ($users as $user)
-                            <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
-                                <div class="p-6">
-                                    <div class="flex items-center">
-                                        <a href="{{ route('chat', $user) }}">
-                                            <div class="ml-4">
-                                                <div class="text-sm font-medium text-gray-900">{{ $user->name }}</div>
-                                                <div class="text-sm text-gray-500">{{ $user->email }}</div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <title>{{ config('app.name', 'Laravel') }} - Chat</title>
 
-                </div>
-            </div>
-        </div>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+
+    <!-- Scripts -->
+    @vite(['themes/tailwind/css/app.css', 'themes/tailwind/js/app.js'])
+</head>
+
+<body class="font-sans antialiased">
+    <div id="app" class="min-h-screen bg-gray-100">
+        <chat-dashboard :current-user="{{ json_encode([
+            'id' => auth()->id(),
+            'name' => auth()->user()->name,
+            'email' => auth()->user()->email,
+            'avatar' => auth()->user()->avatar_url,
+        ]) }}"></chat-dashboard>
     </div>
-</x-app-layout>
+</body>
+
+</html>

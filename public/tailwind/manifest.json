@@ -1,0 +1,13 @@
+{
+  "themes/tailwind/css/app.css": {
+    "file": "assets/app-pwi-Xkvw.css",
+    "src": "themes/tailwind/css/app.css",
+    "isEntry": true
+  },
+  "themes/tailwind/js/app.js": {
+    "file": "assets/app-CCY8hH9F.js",
+    "name": "app",
+    "src": "themes/tailwind/js/app.js",
+    "isEntry": true
+  }
+}
